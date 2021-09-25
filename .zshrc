@@ -37,7 +37,6 @@ PROMPT='%n %@ %B%3~%b %# '
 ZSH_THEME=”random”
 
 # Aliases
-alias ls='ls --color=auto'
 alias docco='docker compose'
 alias up='docker compose up'
 alias upb='docker compose up --build'
