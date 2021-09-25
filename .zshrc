@@ -32,8 +32,8 @@ setopt autocd beep nomatch
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-PROMPT='%n %@ %B%3~%b %# '
-#PROMPT='%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%~%f%b %# '
+PROMPT="[%2~] %# "
+RPROMPT="%n %t"
 ZSH_THEME=”random”
 
 # Aliases
