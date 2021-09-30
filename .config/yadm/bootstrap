@@ -17,9 +17,9 @@ if [ "$system_type" = "Darwin" ]; then
 
   # install iterm2
   brew list iterm2 || brew install iterm2
-  if [ -d "$HOME/.iterm2" ]; then
+  if [ -d "$HOME/.config/iterm2" ]; then
     echo "Setting iTerm preference folder"
-    defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
+    defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.config/iterm2"
   fi
 
 fi
