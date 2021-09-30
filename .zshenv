@@ -1,11 +1,1 @@
-# Go
-GOPATH=$HOME/go
-GOROOT=/usr/local/go
-
-path=(
-  $GOROOT/bin
-  $GOPATH/bin
-  $path
-)
-
-GPG_TTY=$(tty)
+for config (~/.config/zsh/*.env) source $config
