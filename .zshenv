@@ -7,3 +7,5 @@ path=(
   $GOPATH/bin
   $path
 )
+
+GPG_TTY=$(tty)
