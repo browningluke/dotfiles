@@ -1,16 +1,3 @@
-is_linux () {
-  [[ $('uname') == 'Linux' ]];
-}
-
-is_osx () {
-  [[ $('uname') == 'Darwin' ]]
-}
-
-is_wsl () {
-	grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null
-}
-
-
 # Zsh autocomplete
 #source /home/ubuntu/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
@@ -36,25 +23,4 @@ PROMPT="[%2~] %# "
 RPROMPT="%n %t"
 ZSH_THEME=”random”
 
-# Aliases
-alias docco='docker compose'
-alias up='docker compose up'
-alias upb='docker compose up --build'
-alias down='docker compose down'
-
-alias ts-watch='npx tsc -w -p .'
-
-eval $(thefuck --alias)
-
-# WSL
-if is_wsl; then
-	# Windows Apps
-	export PATH=/mnt/c/ProgramData/chocolatey/bin/adb.exe:/mnt/c/ProgramData/chocolatey/bin/scrcpy.exe:$PATH
-	alias adb='adb.exe'
-	alias scrcpy='scrcpy.exe -w -S'
-	alias expl="explorer.exe"
-fi
-
-
 neofetch | lolcat
-cd ~
