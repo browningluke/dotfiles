@@ -6,6 +6,8 @@ alias c="docker compose"
 alias v="vim"
 alias ls="ls --color=auto"
 alias ts-watch='npx tsc -w -p .'
+alias y="yadm"
+
 
 # External programs
 eval $(thefuck --alias)
