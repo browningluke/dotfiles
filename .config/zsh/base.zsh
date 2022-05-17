@@ -23,4 +23,8 @@ PROMPT="[%2~] %# "
 RPROMPT="%n %t"
 ZSH_THEME=”random”
 
+for config (~/.config/zsh/functions/*.zsh) source $config # source functions
+
+
 neofetch | lolcat
+
