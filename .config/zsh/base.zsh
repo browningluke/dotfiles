@@ -24,7 +24,7 @@ RPROMPT="%n %t"
 ZSH_THEME=”random”
 
 for config (~/.config/zsh/functions/*.zsh) source $config # source functions
-
+for config (~/.config/zsh/aliases/*.zsh) source $config # source aliases
 
 neofetch | lolcat
 
