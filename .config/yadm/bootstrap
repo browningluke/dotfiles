@@ -22,4 +22,11 @@ if [ "$system_type" = "Darwin" ]; then
     defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.config/iterm2"
   fi
 
+  # install hammerspoon
+  brew list hammerspoon || brew install hammerspoon
+  if [ -f "$HOME/.config/hammerspoon/init.lua" ]; then
+    echo "Setting hammerspoon preference folder"
+    defaults write org.hammerspoon.Hammerspoon MJConfigFile "$HOME/.config/hammerspoon/init.lua"
+  fi
+
 fi
