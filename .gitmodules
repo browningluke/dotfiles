@@ -2,6 +2,11 @@
 	path = .config/zsh/plugins/zsh-snap
 	url = https://github.com/marlonrichert/zsh-snap.git
 
-[submodule "/Users/lukebrowning/.yadm-project"]
-	path = /Users/lukebrowning/.yadm-project
+[submodule ".yadm-project"]
+	path = .yadm-project
 	url = https://github.com/browningluke/yadm.git
+
+[submodule ".local/share/yadm-encrypt"]
+	path = .local/share/yadm-encrypt
+	url = git@github.com:browningluke/yadm-secret.git
+
