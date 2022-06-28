@@ -1,0 +1,3 @@
+[submodule ".config/zsh/plugins/zsh-snap"]
+	path = .config/zsh/plugins/zsh-snap
+	url = https://github.com/marlonrichert/zsh-snap.git
