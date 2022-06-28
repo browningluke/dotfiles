@@ -9,6 +9,8 @@ alias h="helm"
 alias y="yadm"
 alias g="git"
 
+alias g-tree="git log --oneline --graph --color --all --decorate"
+alias y-tree="yadm log --oneline --graph --color --all --decorate"
 
 # Misc
 alias v="vim"
