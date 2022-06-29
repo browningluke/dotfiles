@@ -6,8 +6,12 @@ alias k="kubectl"
 alias h="helm"
 
 # Git
-alias y="yadm"
 alias g="git"
+
+alias  y="yadm"
+alias yc="yadm commit -m"
+alias yd="yadm diff"
+alias yp="yadm push"
 
 alias g-tree="git log --oneline --graph --color --all --decorate"
 alias y-tree="yadm log --oneline --graph --color --all --decorate"
