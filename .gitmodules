@@ -4,7 +4,7 @@
 
 [submodule ".yadm-project"]
 	path = .yadm-project
-	url = https://github.com/browningluke/yadm.git
+	url = https://github.com/browningluke-forks/yadm.git
 
 [submodule ".local/share/yadm-encrypt"]
 	path = .local/share/yadm-encrypt
