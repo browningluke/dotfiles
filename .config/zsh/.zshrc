@@ -27,17 +27,16 @@ ZSH_THEME=”random”
 
 neofetch | lolcat
 
-
 ## -- Added by tools ---
 
 # The following lines were added by compinstall (commented out because of zsh-autocomplete-plugin)
 
-zstyle ':completion:*' completer _expand _complete _ignored _approximate
-zstyle ':completion:*' matcher-list ''
-zstyle :compinstall filename '/home/luke/.zshrc'
+#zstyle ':completion:*' completer _expand _complete _ignored _approximate
+#zstyle ':completion:*' matcher-list ''
+#zstyle :compinstall filename '/home/luke/.zshrc'
 
-autoload -Uz compinit
-compinit
+#autoload -Uz compinit
+#compinit
 # End of lines added by compinstall
 
 # Lines configured by zsh-newuser-install
@@ -47,4 +46,16 @@ SAVEHIST=5000
 setopt autocd beep nomatch
 bindkey -e
 # End of lines configured by zsh-newuser-install
+
+# Plugins
+source ~/.config/zsh/plugins/zsh-snap/znap.zsh
+
+znap source marlonrichert/zsh-autocomplete
+znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
+
+# Autocomplete
+source <(kubectl completion zsh)
+source <(helm completion zsh)
+
+fpath=(~/.zsh/completion $fpath)
 
