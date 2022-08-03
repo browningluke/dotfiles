@@ -51,6 +51,7 @@ bindkey -e
 source ~/.config/zsh/plugins/zsh-snap/znap.zsh
 
 znap source marlonrichert/zsh-autocomplete
+znap source zsh-users/zsh-syntax-highlighting
 znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
 
 # Autocomplete
