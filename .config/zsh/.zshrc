@@ -21,8 +21,15 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # Functions
 [[ -f $ZDOTDIR/functions.zsh.local ]] && source $ZDOTDIR/functions.zsh.local
 
-PROMPT="[%2~] %# "
-RPROMPT="%n %t"
+# Git Branch Info
+function parse_git_branch() {
+    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
+}
+
+setopt PROMPT_SUBST
+
+PROMPT='[%2~] %# '
+RPROMPT='$(parse_git_branch) %t'
 ZSH_THEME=”random”
 
 neofetch | lolcat
