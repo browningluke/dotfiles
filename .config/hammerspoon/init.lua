@@ -2,11 +2,26 @@ local f19Down = 0
 local f18Down = 0
 local f17Down = 0
 
+-- Set font to monospaced
+local font = {}
+font["name"] = "Consolas"
+font["size"] = 24
+
+-- Set color to white
+local color = {}
+color["white"] = 1.0
+color["alpha"] = 1.0
+
+-- Set alert style
+local alertStyle = {}
+alertStyle["font"] = font
+alertStyle["color"] = color
+
 function showAlert(text, time)
   hs.alert.closeAll(0.0)
 
   for _, screen in ipairs(hs.screen.allScreens()) do
-    hs.alert.show(text, {}, screen, time)
+    hs.alert.show(hs.styledtext.new(text, alertStyle), {}, screen, time)
   end
 end
 
