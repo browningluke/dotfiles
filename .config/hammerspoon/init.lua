@@ -109,6 +109,9 @@ leftMouse = hs.eventtap.new({hs.eventtap.event.types.leftMouseDown}, function (e
     hs.spotify.ff()
     
     return true -- stop propagation
+  elseif f17Down == 1 then
+    hs.eventtap.keyStroke({"fn", "ctrl"}, "left", 100)
+    return true
   end
 
 end):start()
@@ -123,6 +126,9 @@ rightMouse = hs.eventtap.new({hs.eventtap.event.types.rightMouseDown}, function 
     hs.spotify.rw()
     
     return true -- stop propagation
+  elseif f17Down == 1 then
+    hs.eventtap.keyStroke({"fn", "ctrl"}, "right", 100)
+    return true
   end
 
 end):start()
@@ -130,7 +136,7 @@ end):start()
 -- Bind keys
 hs.hotkey.bind({}, "f19", function() f19Down = 1 end, function() f19Down = 0 end)
 hs.hotkey.bind({}, "f18", function() f18Down = 1 end, function() f18Down = 0 end)
---hs.hotkey.bind({}, "f17", function() f17Down = 1 end, function() f17Down = 0 end)
+hs.hotkey.bind({}, "f17", function() f17Down = 1 end, function() f17Down = 0 end)
 
 -- Bind middle mouse
 mouseButtons = hs.eventtap.new({ hs.eventtap.event.types.otherMouseDown }, function(e)
@@ -154,3 +160,5 @@ mouseButtons = hs.eventtap.new({ hs.eventtap.event.types.otherMouseDown }, funct
     end
   end
 end):start()
+
+local pathWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.config/hammerspoon/", hs.reload):start()
