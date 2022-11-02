@@ -22,7 +22,7 @@ alias ls="ls --color=auto"
 alias ts-watch='npx tsc -w -p .'
 
 # External programs
-eval $(thefuck --alias)
+eval $(thefuck --alias f)
 
 # WSL
 if is_wsl; then
