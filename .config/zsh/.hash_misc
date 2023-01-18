@@ -1,0 +1,4 @@
+hash -d zsh="$ZDOTDIR"
+
+hash -d github=/Users/lukebrowning/Documents/github
+

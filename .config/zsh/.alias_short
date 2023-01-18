@@ -1,0 +1,13 @@
+alias d="docker"
+alias c="docker compose"
+
+alias k="kubectl"
+alias h="helm"
+
+alias v="vim"
+
+alias g="git"
+alias y="yadm"
+
+alias ap='ansible-playbook'
+

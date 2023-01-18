@@ -1,0 +1,8 @@
+alias ls='ls --color=auto'
+alias l.='ls -d .*'
+alias ll='ls -l'
+
+alias zr='znap restart'
+
+alias ts-watch='npx tsc -w -p .'
+

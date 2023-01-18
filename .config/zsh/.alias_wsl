@@ -1,0 +1,8 @@
+# WSL
+if is_wsl; then
+    # Windows Apps
+    export PATH=/mnt/c/ProgramData/chocolatey/bin/adb.exe:/mnt/c/ProgramData/chocolatey/bin/scrcpy.exe:$PATH
+    alias adb='adb.exe'
+    alias scrcpy='scrcpy.exe -w -S'
+    alias expl="explorer.exe"
+fi

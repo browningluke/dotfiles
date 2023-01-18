@@ -1,3 +1,4 @@
+# ==== Helpers ====
 # Determine platform
 is_linux () {
   [[ $('uname') == 'Linux' ]];
@@ -11,31 +12,85 @@ is_wsl () {
   grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null
 }
 
-#for config (~/.config/zsh/*.zsh) source $config
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# Source all - 'local' func (cleaned up)
+source_all() {
+    # Ignore null matches
+    if (( $# < 1 )); then
+        return
+    fi
 
-# Aliases
-[[ -f $ZDOTDIR/aliases.zsh ]] && source $ZDOTDIR/aliases.zsh
-[[ -f $ZDOTDIR/aliases.zsh.local ]] && source $ZDOTDIR/aliases.zsh.local
-
-# Functions
-[[ -f $ZDOTDIR/functions.zsh.local ]] && source $ZDOTDIR/functions.zsh.local
-
-# Git Branch Info
-function parse_git_branch() {
-    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
+    for file in "$@"; do;
+        . "$file"
+    done
 }
 
-setopt PROMPT_SUBST
+# ==== Znap ====
+source ~/.config/zsh/plugins/zsh-snap/znap.zsh
 
+# ==== Aliases ====
+source_all $ZDOTDIR/.alias_*(N) # *(N) is the 'N glob quantifier'
+
+# ==== Functions ====
+source_all $ZDOTDIR/.func_*(N)
+
+# ==== Named Directories ====
+source_all $ZDOTDIR/.hash_*(N)
+
+# ==== Git Branch Info ====
+# Load version control information
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats '[%b]'
+
+# ==== Prompt ==== 
+setopt PROMPT_SUBST
 PROMPT='[%2~] %# '
-RPROMPT='$(parse_git_branch) %t'
+RPROMPT='${vcs_info_msg_0_%} %t'
 ZSH_THEME=”random”
 
+# ==== ZSH History ====
+HISTFILE=$ZDOTDIR/.histfile
+HISTSIZE=1000
+SAVEHIST=5000
+
+# ==== ZSH Options ====
+setopt autocd beep nomatch
+bindkey -e
+
+# ==== Plugins ====
+znap source marlonrichert/zsh-autocomplete
+znap source zsh-users/zsh-syntax-highlighting
+znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
+
+# ==== pyenv ====
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+
+# Lazy load pyenv (runs pyenv init only when pyenv is first called in a shell) 
+znap function _pyenv pyenv 'eval "$( pyenv init - --no-rehash )"'
+compctl -K    _pyenv pyenv
+
+# ==== Autocomplete ====
+znap fpath _kubectl 'kubectl completion zsh'
+znap fpath _helm 'helm completion zsh'
+
+# pip
+znap function _pip_completion pip       'eval "$( pip completion --zsh )"'
+compctl -K    _pip_completion pip
+
+# ==== SSH ====
+export SSH_AUTH_SOCK="~/.ssh/agent"
+
+# ==== MOTD ====
 neofetch | lolcat
 
-## -- Added by tools ---
 
+# ==== Cleanup all 'local' vars/funcs ====
+unset -f source_all 
+
+# ==== Archive ====
 # The following lines were added by compinstall (commented out because of zsh-autocomplete-plugin)
 
 #zstyle ':completion:*' completer _expand _complete _ignored _approximate
@@ -45,25 +100,4 @@ neofetch | lolcat
 #autoload -Uz compinit
 #compinit
 # End of lines added by compinstall
-
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=5000
-setopt autocd beep nomatch
-bindkey -e
-# End of lines configured by zsh-newuser-install
-
-# Plugins
-source ~/.config/zsh/plugins/zsh-snap/znap.zsh
-
-znap source marlonrichert/zsh-autocomplete
-znap source zsh-users/zsh-syntax-highlighting
-znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
-
-# Autocomplete
-source <(kubectl completion zsh)
-source <(helm completion zsh)
-
-fpath=(~/.zsh/completion $fpath)
 

@@ -1,13 +1,12 @@
-export ZDOTDIR=${ZDOTDIR:-$HOME/.config/zsh}
-
-# Go
+# ==== Go ====
 export GOPATH=$HOME/go
 export GOROOT="$(/opt/homebrew/bin/brew --prefix go)/libexec"
 
+# ==== Unix General ====
 export GPG_TTY=$(tty)
 export VISUAL='vim'
 
-# PATH
+# ==== PATH ====
 path=(
   /opt/homebrew/bin
   /opt/homebrew/sbin
@@ -18,9 +17,9 @@ path=(
   $path
 )
 
+# ==== Cargo ====
+. "$HOME/.cargo/env"
 
-# Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# ==== General Variables ====
+export EDITOR=vim
 
