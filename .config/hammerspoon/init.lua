@@ -39,6 +39,7 @@ function changeVolume(diff)
     end
     showAlert("Volume: " .. generateProgressBar(new) .. " (" .. new .. "%)", 0.75)
     hs.audiodevice.defaultOutputDevice():setVolume(new)
+    hs.audiodevice.defaultOutputDevice():setBalance(0.5) -- force center balance
 end
 
 function changeSpotifyVolume(diff)
