@@ -3,8 +3,9 @@ alias yc="yadm commit -m"
 alias yd="yadm diff"
 alias yp="yadm push"
 
-alias gtree="git log --oneline --graph --color --all --decorate"
 alias ytree="yadm log --oneline --graph --color --all --decorate"
 
 alias gpurge='git branch --merged | grep -Ev "(\*|master|develop|staging)" | xargs -n 1 git branch -d'
+
+alias gr='cd "$(git root)"'
 
