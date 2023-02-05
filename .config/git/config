@@ -1,0 +1,64 @@
+[user]
+	email = browningluke01@gmail.com
+	name = Luke Browning
+	signingKey = C6D9589050CB48AF8EF767B92393A099B2EBFA62
+
+[init]
+	defaultBranch = main
+
+[commit]
+	gpgsign = true
+
+[tag]
+	forceSignAnnotated = true
+
+[diff]
+    # detect renamed files and show only actual differences between them
+    renames = copies
+
+[gpg]
+	program = /opt/homebrew/bin/gpg
+
+# ==== Color ====
+[color]
+    ui = auto
+
+[color "status"]
+    # use different color than untracked and unmerged paths have
+    changed = yellow
+
+# ==== Aliases ====
+[alias]
+	root = rev-parse --show-toplevel
+
+    # Short
+
+    br = branch
+    co = checkout
+    cob = checkout -b
+
+    rbi = rebase --interactive
+
+    rs = reset
+    rs1 = reset HEAD~1
+
+    # LOGS
+
+    ls = !git log --color=always --decorate --graph --date=relative \
+    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)'
+
+    # log All local and remote branches
+    la = !git ls HEAD --branches --remotes
+
+    # Long format - full commit message and summary of changes
+    ll = !git log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
+
+
+
+# ==== Credentials ====
+[credential "https://github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
