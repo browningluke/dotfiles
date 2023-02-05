@@ -75,6 +75,9 @@ compctl -K    _pyenv pyenv
 # ==== Autocomplete ====
 znap fpath _kubectl 'kubectl completion zsh'
 znap fpath _helm 'helm completion zsh'
+znap fpath _gh 'gh completion -s zsh'
+
+complete -o nospace -C terraform terraform
 
 # pip
 znap function _pip_completion pip       'eval "$( pip completion --zsh )"'
