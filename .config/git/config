@@ -36,6 +36,14 @@
     br = branch
     co = checkout
     cob = checkout -b
+    cop = "!f() { \
+                git checkout $1 && \
+                git fetch ${2-origin} $1 && \
+                git rebase ${2-origin}/$1;\
+            }; f"
+
+    c = commit
+    cm = commit -m
 
     rbi = rebase --interactive
 
@@ -52,8 +60,6 @@
 
     # Long format - full commit message and summary of changes
     ll = !git log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
-
-
 
 # ==== Credentials ====
 [credential "https://github.com"]
