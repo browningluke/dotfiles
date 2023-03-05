@@ -1,0 +1,8 @@
+copy() { 
+    cat "$1" | pbcopy
+}
+
+paste() {
+    pbpaste >> "$1"
+}
+
