@@ -72,6 +72,9 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 znap function _pyenv pyenv 'eval "$( pyenv init - --no-rehash )"'
 compctl -K    _pyenv pyenv
 
+# ==== Terraform ====
+export TF_PLUGIN_CACHE_DIR="/opt/tf-plugin-cache"
+
 # ==== Autocomplete ====
 znap fpath _kubectl 'kubectl completion zsh'
 znap fpath _helm 'helm completion zsh'
