@@ -1,0 +1,30 @@
+# Convert all files in current dir to JPEG XL (requires libjxl & parallel)
+jpg2jxl() {
+    # Prepare ENV & directories
+    PLLDIR="/tmp/pll_$(date +%s)"
+    JXLPATH="jxl"
+    mkdir jxl
+
+    # Run conversion
+    parallel --results $PLLDIR "cjxl --lossless_jpeg=1 {} $JXLPATH/{.}.jxl" ::: *.jpeg *.jpg
+
+    # Find all failed
+    grep -nrli failed $PLLDIR | cut -d "/" -f 5 | tee failed.txt
+    FAILEDNUM="$(cat failed.txt | wc -l)"
+    echo "Wrote $FAILEDNUM failed items to failed.txt"
+
+    # Calculate size reduction
+    OLDSIZE="$(du -kc *.jpg *.jpeg | grep total$ | cut -f1)"
+    NEWSIZE="$(du -kc $JXLPATH/*.jxl | grep total$ | cut -f1)"
+    SIZEREDU=$(awk -v t1="$OLDSIZE" -v t2="$NEWSIZE" 'BEGIN{printf "%.0f", (t2-t1)/t1 * 100}')
+
+    OLDSIZEH=$(echo "${OLDSIZE}K" | numfmt --from=iec --to=iec-i --suffix=B --format='%.2f')
+    NEWSIZEH=$(echo "${NEWSIZE}K" | numfmt --from=iec --to=iec-i --suffix=B --format='%.2f')
+
+    echo "Size changed by ${SIZEREDU}% (Old: $OLDSIZEH; New: $NEWSIZEH)"
+
+    unset PLLDIR FAILEDNUM
+    unset JXLPATH
+    unset NEWSIZE OLDSIZE SIZEREDU OLDSIZEH NEWSIZEH
+}
+
