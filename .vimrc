@@ -34,6 +34,7 @@ set tabstop=4
 set autoindent
 set expandtab
 set softtabstop=4
+set shiftwidth=4
 set cursorline
 set showcmd
 set hlsearch
@@ -44,6 +45,16 @@ set confirm
 
 set ruler
 
+set linebreak
+set showbreak=+++
+
+set smartcase
+set ignorecase
+
+" turn hybrid line numbers on
+set number relativenumber
+
+" Maps
 map <F9> :tabn<CR>
 map <F7> :tabp<CR>
 
