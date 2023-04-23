@@ -28,3 +28,17 @@ jpg2jxl() {
     unset NEWSIZE OLDSIZE SIZEREDU OLDSIZEH NEWSIZEH
 }
 
+# Move all files in CWD with pattern `YYYYMMDD.*` into directory structure `YYYY/MM/DD/`
+mvdate() {
+	regex="([0-9]{4})([0-9]{2})([0-9]{2}).*"
+	for f in ./*
+	do
+	    if [[ $f =~ $regex ]]
+	    then
+	        mkdir -p "$match[1]/$match[2]/$match[3]"
+	        mv "$f" "$match[1]/$match[2]/$match[3]"
+	    fi
+	done
+	unset regex
+}
+
