@@ -6,7 +6,7 @@ jpg2jxl() {
     mkdir jxl
 
     # Run conversion
-    parallel --results $PLLDIR "cjxl --lossless_jpeg=1 {} $JXLPATH/{.}.jxl" ::: *.jpeg *.jpg
+    parallel --results $PLLDIR "cjxl --lossless_jpeg=1 {} $JXLPATH/{.}.jxl" ::: *.jpeg(N) *.jpg(N)
 
     # Find all failed
     grep -nrli failed $PLLDIR | cut -d "/" -f 5 | tee failed.txt
@@ -14,7 +14,7 @@ jpg2jxl() {
     echo "Wrote $FAILEDNUM failed items to failed.txt"
 
     # Calculate size reduction
-    OLDSIZE="$(du -kc *.jpg *.jpeg | grep total$ | cut -f1)"
+    OLDSIZE="$(du -kc *.jpg(N) *.jpeg(N) | grep total$ | cut -f1)"
     NEWSIZE="$(du -kc $JXLPATH/*.jxl | grep total$ | cut -f1)"
     SIZEREDU=$(awk -v t1="$OLDSIZE" -v t2="$NEWSIZE" 'BEGIN{printf "%.0f", (t2-t1)/t1 * 100}')
 
