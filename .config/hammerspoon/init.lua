@@ -148,6 +148,9 @@ mouseButtons = hs.eventtap.new({ hs.eventtap.event.types.otherMouseDown }, funct
       showCurrentSongAlert()
       --print("Pause spotify")
       return true
+    elseif f17Down == 1 then
+      hs.eventtap.keyStroke({"fn", "ctrl"}, "up", 100)
+      return true
     end
   elseif mouseButton == 3 then
     if f18Down == 1 then
