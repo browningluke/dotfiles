@@ -42,3 +42,20 @@ mvdate() {
 	unset regex
 }
 
+# Grab `FileModifyDate` on all files in CWD, set as `DateTimeOriginal`, and prepend `YYYYMMDD-HHMMSS-`
+# Used for setting proper `Created on` date for Snapchat images
+date_mod2create() {
+	for f in *
+	do
+	    DATEBITS=( $(exiftool -FileModifyDate "$f" | awk -F: '{ print $2 ":" $3 ":" $4 ":" $5 ":" $6 }' | sed 's/+[0-9]*//' | sort | grep -v 1970: | cut -d: -f1-6 | tr ':' ' ' | head -1) )
+	    YR=${DATEBITS[1]}
+		MTH=${DATEBITS[2]}
+		DAY=${DATEBITS[3]}
+		HR=${DATEBITS[4]}
+		MIN=${DATEBITS[5]}
+		SEC=${DATEBITS[6]}
+		exiftool -datetimeoriginal="$YR:$MTH:$DAY $HR:$MIN:$SEC" "$f"
+		mv "$f" "$YR$MTH$DAY-$HR$MIN${SEC//-[0-9]*}-$f"
+	done
+}
+
