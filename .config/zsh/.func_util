@@ -6,7 +6,7 @@ jpg2jxl() {
     mkdir jxl
 
     # Run conversion
-    parallel --results $PLLDIR "cjxl --lossless_jpeg=1 {} $JXLPATH/{.}.jxl" ::: *.jpeg(N) *.jpg(N)
+    parallel --results $PLLDIR "cjxl --lossless_jpeg=1 {} $JXLPATH/{.}.jxl" ::: *.jpeg(N) *.jpg(N) *.JPEG(N) *.JPG(N)
 
     # Find all failed
     grep -nrli failed $PLLDIR | cut -d "/" -f 5 | tee failed.txt
@@ -14,7 +14,7 @@ jpg2jxl() {
     echo "Wrote $FAILEDNUM failed items to failed.txt"
 
     # Calculate size reduction
-    OLDSIZE="$(du -kc *.jpg(N) *.jpeg(N) | grep total$ | cut -f1)"
+    OLDSIZE="$(du -kc *.jpg(N) *.jpeg(N) *.JPG(N) *.JPEG(N) | grep total$ | cut -f1)"
     NEWSIZE="$(du -kc $JXLPATH/*.jxl | grep total$ | cut -f1)"
     SIZEREDU=$(awk -v t1="$OLDSIZE" -v t2="$NEWSIZE" 'BEGIN{printf "%.0f", (t2-t1)/t1 * 100}')
 
@@ -31,13 +31,13 @@ jpg2jxl() {
 # Move all files in CWD with pattern `YYYYMMDD.*` into directory structure `YYYY/MM/DD/`
 mvdate() {
 	regex="([0-9]{4})([0-9]{2})([0-9]{2}).*"
-	for f in ./*
-	do
-	    if [[ $f =~ $regex ]]
-	    then
-	        mkdir -p "$match[1]/$match[2]/$match[3]"
-	        mv "$f" "$match[1]/$match[2]/$match[3]"
-	    fi
+	for f in ./*; do
+	    if [ -f "$f" ]; then
+            if [[ $f =~ $regex ]]; then
+	            mkdir -p "$match[1]/$match[2]/$match[3]"
+	            mv -vn "$f" "$match[1]/$match[2]/$match[3]"
+	        fi
+        fi
 	done
 	unset regex
 }
@@ -45,17 +45,40 @@ mvdate() {
 # Grab `FileModifyDate` on all files in CWD, set as `DateTimeOriginal`, and prepend `YYYYMMDD-HHMMSS-`
 # Used for setting proper `Created on` date for Snapchat images
 date_mod2create() {
-	for f in *
-	do
-	    DATEBITS=( $(exiftool -FileModifyDate "$f" | awk -F: '{ print $2 ":" $3 ":" $4 ":" $5 ":" $6 }' | sed 's/+[0-9]*//' | sort | grep -v 1970: | cut -d: -f1-6 | tr ':' ' ' | head -1) )
-	    YR=${DATEBITS[1]}
-		MTH=${DATEBITS[2]}
-		DAY=${DATEBITS[3]}
-		HR=${DATEBITS[4]}
-		MIN=${DATEBITS[5]}
-		SEC=${DATEBITS[6]}
-		exiftool -datetimeoriginal="$YR:$MTH:$DAY $HR:$MIN:$SEC" "$f"
-		mv "$f" "$YR$MTH$DAY-$HR$MIN${SEC//-[0-9]*}-$f"
-	done
+	for f in "$@"; do
+        if [ -f "$f" ]; then
+            DATEBITS=( $(exiftool -FileModifyDate "$f" | awk -F: '{ print $2 ":" $3 ":" $4 ":" $5 ":" $6 }' | sed 's/+[0-9]*//' | sort | grep -v 1970: | cut -d: -f1-6 | tr ':' ' ' | head -1) )
+            YR=${DATEBITS[1]}
+            MTH=${DATEBITS[2]}
+            DAY=${DATEBITS[3]}
+            HR=${DATEBITS[4]}
+            MIN=${DATEBITS[5]}
+            SEC=${DATEBITS[6]}
+            exiftool -overwrite_original -datetimeoriginal="$YR:$MTH:$DAY $HR:$MIN:$SEC" "$f"
+            mv -v "$f" "$YR$MTH${DAY}_$HR$MIN${SEC//-[0-9]*}_$f"
+	    fi
+    done
+}
+
+
+# Grab `DateTimeOriginal`, and prepend `YYYYMMDD-HHMMSS-`
+date_create2name() {
+    for f in *; do
+        if [ -f "$f" ]; then
+            DATEBITS=( $(exiftool -datetimeoriginal -createdate "$f" | awk -F: '{ print $2 ":" $3 ":" $4 ":" $5 ":" $6 }' | sed 's/+[0-9]*//' | sort | grep -v 1970: | cut -d: -f1-6 | tr ':' ' ' | head -1) )
+            if (( ${#DATEBITS[@]} == 0 )); then
+                echo "Unable to get datebits for $f"
+                continue
+            fi
+
+            YR=${DATEBITS[1]}
+            MTH=${DATEBITS[2]}
+            DAY=${DATEBITS[3]}
+            HR=${DATEBITS[4]}
+            MIN=${DATEBITS[5]}
+            SEC=${DATEBITS[6]}
+            mv -v "$f" "$YR$MTH${DAY}_$HR$MIN${SEC//-[0-9]*}_$f"
+        fi
+    done
 }
 
