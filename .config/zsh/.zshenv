@@ -21,5 +21,5 @@ path=(
 . "$HOME/.cargo/env"
 
 # ==== General Variables ====
-export EDITOR=vim
+export EDITOR=nvim
 

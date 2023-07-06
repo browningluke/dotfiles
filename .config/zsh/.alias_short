@@ -4,7 +4,7 @@ alias c="docker compose"
 alias k="kubectl"
 alias h="helm"
 
-alias v="vim"
+alias v="nvim"
 
 alias g="git"
 alias y="yadm"
