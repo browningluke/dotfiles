@@ -1,0 +1,11 @@
+use_nerdfont = false # Set to true once https://github.com/hrkfdn/ncspot/issues/1154 is closed
+
+volnorm = true
+
+
+statusbar_format = "%title - %artists"
+
+[track_format]
+left = "%title - %artists"
+center = "%album"
+right = "%saved %duration"
