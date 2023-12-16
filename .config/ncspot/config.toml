@@ -1,8 +1,11 @@
 use_nerdfont = false # Set to true once https://github.com/hrkfdn/ncspot/issues/1154 is closed
 
 volnorm = true
+volnorm_pregain = 2.0
+bitrate = 320
+gapless = true
 
-
+library_tabs = ["tracks", "playlists", "browse"]
 statusbar_format = "%title - %artists"
 
 [track_format]
