@@ -67,10 +67,11 @@ znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
 # ==== pyenv ====
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
-# Lazy load pyenv (runs pyenv init only when pyenv is first called in a shell) 
-znap function _pyenv pyenv 'eval "$( pyenv init - --no-rehash )"'
-compctl -K    _pyenv pyenv
+## Lazy load pyenv (runs pyenv init only when pyenv is first called in a shell)
+#znap function _pyenv pyenv 'eval "$( pyenv init - --no-rehash )"'
+#compctl -K    _pyenv pyenv
 
 # ==== Terraform ====
 export TF_PLUGIN_CACHE_DIR="/opt/tf-plugin-cache"
