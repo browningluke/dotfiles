@@ -54,6 +54,10 @@ local plugins = {
       end)
     end,
   },
+  {
+    "charludo/projectmgr.nvim",
+    lazy = false,
+  },
 }
 
 return plugins
