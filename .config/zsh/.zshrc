@@ -85,9 +85,7 @@ znap source lukechilds/zsh-nvm
 alias ssh='~/.local/bin/ssh-ident'
 
 # ==== Autocomplete ====
-znap fpath _kubectl 'kubectl completion zsh'
-znap fpath _helm 'helm completion zsh'
-znap fpath _gh 'gh completion -s zsh'
+# Mostly covered by having homebrew/site-functions in fpath (see .zshenv)
 
 complete -o nospace -C terraform terraform
 
