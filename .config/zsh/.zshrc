@@ -76,6 +76,11 @@ eval "$(pyenv init -)"
 # ==== Terraform ====
 export TF_PLUGIN_CACHE_DIR="/opt/tf-plugin-cache"
 
+# ==== nvm ====
+export NVM_COMPLETION=true
+export NVM_LAZY_LOAD=true
+znap source lukechilds/zsh-nvm
+
 # ==== Autocomplete ====
 znap fpath _kubectl 'kubectl completion zsh'
 znap fpath _helm 'helm completion zsh'
