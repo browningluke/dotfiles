@@ -15,6 +15,7 @@ export XDG_DATA_DIRS="/opt/homebrew/share:$XDG_DATA_DIRS"
 
 # ==== PATH ====
 path=(
+  ~/.local/bin
   /opt/homebrew/bin
   /opt/homebrew/sbin
   $GOROOT/bin
