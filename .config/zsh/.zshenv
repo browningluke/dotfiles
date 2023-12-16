@@ -10,6 +10,9 @@ export SSH_SK_PROVIDER="/usr/local/lib/libsk-libfido2.dylib"
 export GPG_TTY=$(tty)
 export VISUAL='vim'
 
+# XDG
+export XDG_DATA_DIRS="/opt/homebrew/share:$XDG_DATA_DIRS"
+
 # ==== PATH ====
 path=(
   /opt/homebrew/bin
