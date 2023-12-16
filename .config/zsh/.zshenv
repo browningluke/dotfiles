@@ -6,6 +6,9 @@ export GOROOT="$(/opt/homebrew/bin/brew --prefix go)/libexec"
 # Installed from https://github.com/MichaelRoosz/homebrew-ssh/blob/main/Formula/libfido2.rb
 export SSH_SK_PROVIDER="/usr/local/lib/libsk-libfido2.dylib"
 
+# ==== Vault ===
+export VAULT_ADDR="https://vault.browningluke.dev"
+
 # ==== Unix General ====
 export GPG_TTY=$(tty)
 export VISUAL='vim'
