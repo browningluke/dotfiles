@@ -1,3 +1,5 @@
+[core]
+  sshCommand = /Users/lukebrowning/.local/bin/ssh-ident
 [user]
 	email = browningluke01@gmail.com
 	name = Luke Browning
