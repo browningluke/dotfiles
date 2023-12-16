@@ -44,7 +44,7 @@ precmd() { vcs_info }
 # Format the vcs_info_msg_0_ variable
 zstyle ':vcs_info:git:*' formats '[%b]'
 
-# ==== Prompt ==== 
+# ==== Prompt ====
 setopt PROMPT_SUBST
 PROMPT='[%2~] %# '
 RPROMPT='${vcs_info_msg_0_%} %t'
@@ -56,7 +56,7 @@ HISTSIZE=1000
 SAVEHIST=5000
 
 # ==== ZSH Options ====
-setopt autocd beep nomatch
+setopt autocd beep nomatch autopushd pushdignoredups
 bindkey -e
 
 # ==== Plugins ====
@@ -94,7 +94,7 @@ neofetch | lolcat
 
 
 # ==== Cleanup all 'local' vars/funcs ====
-unset -f source_all 
+unset -f source_all
 
 # ==== Archive ====
 # The following lines were added by compinstall (commented out because of zsh-autocomplete-plugin)
