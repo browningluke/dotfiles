@@ -87,6 +87,10 @@ alias ssh='~/.local/bin/ssh-ident'
 # ==== Autocomplete ====
 # Mostly covered by having homebrew/site-functions in fpath (see .zshenv)
 
+# bitwarden-cli (overrides brew to specify --no-deprecation flag)
+znap fpath _bw "NODE_OPTIONS=\"--no-deprecation\" bw completion --shell zsh"
+compctl -K _bw bw
+
 complete -o nospace -C terraform terraform
 
 # pip
