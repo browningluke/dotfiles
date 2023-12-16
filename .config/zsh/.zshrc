@@ -81,6 +81,9 @@ export NVM_COMPLETION=true
 export NVM_LAZY_LOAD=true
 znap source lukechilds/zsh-nvm
 
+# ==== ssh-ident ====
+alias ssh='~/.local/bin/ssh-ident'
+
 # ==== Autocomplete ====
 znap fpath _kubectl 'kubectl completion zsh'
 znap fpath _helm 'helm completion zsh'
