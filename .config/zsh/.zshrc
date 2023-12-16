@@ -92,6 +92,7 @@ znap fpath _bw "NODE_OPTIONS=\"--no-deprecation\" bw completion --shell zsh"
 compctl -K _bw bw
 
 complete -o nospace -C terraform terraform
+complete -o nospace -C vault vault
 
 # pip
 znap function _pip_completion pip       'eval "$( pip completion --zsh )"'
