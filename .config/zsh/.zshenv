@@ -25,6 +25,12 @@ path=(
   $path
 )
 
+# ==== FPATh ====
+fpath=(
+  $(brew --prefix)/share/zsh/site-functions
+  $fpath
+)
+
 # ==== Cargo ====
 . "$HOME/.cargo/env"
 
