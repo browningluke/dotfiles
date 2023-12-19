@@ -1,0 +1,34 @@
+# This file configures the PATH variable
+# and anything that touches the PATH.
+#
+# It is sourced from:
+#  $ZDOTDIR/.zshenv   -- if non-login
+#  $ZDOTDIR/.zprofile -- if login
+
+
+# ==== PATH ====
+path=(
+  ~/.local/bin
+  /opt/homebrew/bin
+  /opt/homebrew/sbin
+  $GOROOT/bin
+  $GOPATH/bin
+  ~/Library/Python/3.8/bin
+  $ZDOTDIR/functions
+  $path
+)
+export PATH
+
+# ==== FPATH ====
+fpath=(
+  $(brew --prefix)/share/zsh/site-functions
+  $fpath
+)
+
+# ==== Cargo ====
+# this file writes to the PATH
+. "$HOME/.cargo/env"
+
+# ==== pyenv ====
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+

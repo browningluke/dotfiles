@@ -50,6 +50,10 @@ PROMPT='[%2~] %# '
 RPROMPT='${vcs_info_msg_0_%} %t'
 ZSH_THEME=”random”
 
+# ==== PATH ====
+# Remove duplicates from PATH
+typeset -U PATH path
+
 # ==== ZSH History ====
 HISTFILE=$ZDOTDIR/.histfile
 HISTSIZE=1000
@@ -65,8 +69,6 @@ znap source zsh-users/zsh-syntax-highlighting
 znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
 
 # ==== pyenv ====
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 ## Lazy load pyenv (runs pyenv init only when pyenv is first called in a shell)
@@ -103,7 +105,6 @@ export SSH_AUTH_SOCK="~/.ssh/agent"
 
 # ==== MOTD ====
 neofetch | lolcat
-
 
 # ==== Cleanup all 'local' vars/funcs ====
 unset -f source_all
