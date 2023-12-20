@@ -1,0 +1,29 @@
+#VERBOSITY = LOG_DEBUG
+
+DEFAULT_IDENTITY = "default"
+
+PATTERN_KEYS = [
+    r"^id_",
+    r"^identity",
+    r"^ssh[0-9]-",
+    r"(\.key|\.pub)$",
+]
+
+PATTERN_PRIVKEYS = [
+    [r"\.key$", 0],
+    [r"private", 0],
+    # Fallback for all remaining files.
+    [r"", None],
+]
+
+MATCH_ARGV = [
+    [r"\s(git@)?github\.com\s.*browningluke.*\/", "git-gh-browningluke"],
+    [r"\s(git@)?github\.com.*\/", "git-gh-browningluke"],
+    [r"\s(git@)?gist\.github\.com.*", "git-gh-browningluke"],
+
+    [r"\s(git@)?github\.students\.cs\.ubc\.ca.*\/", "git-cs-ubc"],
+    [r"\s(git@)?gitlab\.com\s.*UselessApplication.*\/", "git-gl-ua"],
+    [r"(sol.browningluke.dev)|(10\.(8|50)\.\d{1,3}\.\d{1,3})", "homelab-sol"],
+]
+
+
