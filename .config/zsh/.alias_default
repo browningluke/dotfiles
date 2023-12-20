@@ -1,8 +1,0 @@
-# Every time I go to use a tool I haven't used in a while,
-# I forget the CLI flags/args I liked. This alias file will
-# contain aliases for the tools (& their flags/args) that are
-# the 'default' for my usage.
-
-alias dft_scrcpy="scrcpy -wS"
-
-

@@ -1,3 +1,7 @@
+# ====
+# JXL
+# ====
+
 # Convert all files in current dir to JPEG XL (requires libjxl & parallel)
 jpg2jxl() {
     # Prepare ENV & directories
@@ -27,6 +31,10 @@ jpg2jxl() {
     unset JXLPATH
     unset NEWSIZE OLDSIZE SIZEREDU OLDSIZEH NEWSIZEH
 }
+
+# ====
+# Organize images by date
+# ====
 
 # Move all files in CWD with pattern `YYYYMMDD.*` into directory structure `YYYY/MM/DD/`
 mvdate() {
@@ -80,5 +88,17 @@ date_create2name() {
             mv -v "$f" "$YR$MTH${DAY}_$HR$MIN${SEC//-[0-9]*}_$f"
         fi
     done
+}
+
+# ====
+# Misc
+# ====
+
+copy() {
+    cat "$1" | pbcopy
+}
+
+paste() {
+    pbpaste >> "$1"
 }
 

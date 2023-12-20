@@ -13,17 +13,7 @@ fi
 # Helpers
 # ====
 
-# Source all - 'local' func (cleaned up)
-source_all() {
-    # Ignore null matches
-    if (( $# < 1 )); then
-        return
-    fi
-
-    for file in "$@"; do;
-        . "$file"
-    done
-}
+# ....
 
 # ====
 # ZSH Setup
@@ -33,13 +23,15 @@ source_all() {
 source ~/.config/zsh/plugins/zsh-snap/znap.zsh
 
 # ==== Aliases ====
-source_all $ZDOTDIR/.alias_*(N) # *(N) is the 'N glob quantifier'
+. $ZDOTDIR/.zalias
+. $ZDOTDIR/.zalias.local # Contains secrets, so not in git
 
 # ==== Functions ====
-source_all $ZDOTDIR/.func_*(N)
+. $ZDOTDIR/.zfunc
+. $ZDOTDIR/.zfunc.local # Contains secrets, so not in git
 
 # ==== Named Directories ====
-source_all $ZDOTDIR/.hash_*(N)
+. $ZDOTDIR/.zhash
 
 # ==== Git Branch Info ====
 # Load version control information
@@ -116,7 +108,7 @@ alias ssh='~/.local/bin/ssh-ident'
 # ====
 
 # ==== Cleanup funcs ====
-unset -f source_all
+# unset -f <example>
 
 # ====
 # MOTD
