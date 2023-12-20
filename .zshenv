@@ -1,8 +1,26 @@
 # ====
+# Global Functions
+# ====
+
+# ==== Determine platform ====
+
+is_linux () {
+  [[ $('uname') == 'Linux' ]];
+}
+
+is_darwin () {
+  [[ $('uname') == 'Darwin' ]]
+}
+
+is_wsl () {
+  grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null
+}
+
+# ====
 # Per-Platform Fixes
 # ====
 
-if [[ $('uname') == 'Darwin' ]]; then
+if is_darwin; then
   # ====
   # Ensure correct PATH order
   # ====
@@ -69,7 +87,10 @@ fi
 # Main Config
 # ====
 
+# Setup XDG & ZDOTDIR vars
 export XDG_CONFIG_HOME="/Users/lukebrowning/.config"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# Allow most env setup to live in ZDOTDIR
 . $ZDOTDIR/.zshenv
 
