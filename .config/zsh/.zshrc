@@ -24,6 +24,13 @@ source_all() {
     done
 }
 
+# Since GLOBAL_RCS is disabled on MacOS,
+# source /etc/zshrc to preserve order
+# See ~/.zshenv
+if is_osx; then
+  . /etc/zshrc
+fi
+
 # ==== Znap ====
 source ~/.config/zsh/plugins/zsh-snap/znap.zsh
 
