@@ -23,15 +23,15 @@ fi
 source ~/.config/zsh/plugins/zsh-snap/znap.zsh
 
 # ==== Aliases ====
-. $ZDOTDIR/.zalias
-. $ZDOTDIR/.zalias.local # Contains secrets, so not in git
+. $ZDOTDIR/.zalias.zsh
+. $ZDOTDIR/.zalias.local.zsh # Contains secrets, so not in git
 
 # ==== Functions ====
-. $ZDOTDIR/.zfunc
-. $ZDOTDIR/.zfunc.local # Contains secrets, so not in git
+. $ZDOTDIR/.zfunc.zsh
+. $ZDOTDIR/.zfunc.local.zsh # Contains secrets, so not in git
 
 # ==== Named Directories ====
-. $ZDOTDIR/.zhash
+. $ZDOTDIR/.zhash.zsh
 
 # ==== Git Branch Info ====
 # Load version control information
