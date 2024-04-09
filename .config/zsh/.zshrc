@@ -74,6 +74,8 @@ znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
 znap fpath _bw "NODE_OPTIONS=\"--no-deprecation\" bw completion --shell zsh"
 compctl -K _bw bw
 
+znap eval _az "curl -fsSL https://raw.githubusercontent.com/Azure/azure-cli/azure-cli-2.55.0/az.completion"
+
 complete -o nospace -C terraform terraform
 complete -o nospace -C vault vault
 
