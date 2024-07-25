@@ -23,7 +23,7 @@ alias ls='ls --color=auto'
 alias l.='ls -d .*'
 alias ll='ls -l'
 
-alias zr='znap restart'
+alias zr='source $HOME/.zshenv && source ${ZDOTDIR:-$HOME}/.zshrc'
 
 # Directory navigation
 alias d='dirs -v | head -10'
