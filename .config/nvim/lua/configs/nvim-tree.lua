@@ -77,4 +77,5 @@ local options = {
   },
 }
 
-return options
+require("nvim-tree").setup(options)
+vim.g.nvimtree_side = options.view.side
