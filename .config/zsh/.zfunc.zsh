@@ -10,7 +10,7 @@ jpg2jxl() {
     mkdir jxl
 
     # Run conversion
-    parallel --results $PLLDIR "cjxl --lossless_jpeg=1 {} $JXLPATH/{.}.jxl" ::: *.jpeg(N) *.jpg(N) *.JPEG(N) *.JPG(N)
+    parallel --results $PLLDIR "cjxl -e 9 --lossless_jpeg=1 {} $JXLPATH/{.}.jxl" ::: *.jpeg(N) *.jpg(N) *.JPEG(N) *.JPG(N)
 
     # Find all failed
     grep -nrli failed $PLLDIR | cut -d "/" -f 5 | tee failed.txt
