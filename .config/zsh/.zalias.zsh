@@ -77,6 +77,11 @@ alias tfp='terraform plan'
 alias tfv='terraform validate'
 
 # ====
+# K8s
+# ====
+alias k-get-token='kubectl create token -n kubernetes-dashboard admin-user --duration 100h | pbcopy'
+
+# ====
 # WSL
 # ====
 
