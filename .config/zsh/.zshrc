@@ -115,6 +115,9 @@ znap source lukechilds/zsh-nvm
 # ==== ssh-ident ====
 alias ssh='~/.local/bin/ssh-ident'
 
+# ==== thefuck ====
+eval $(thefuck --alias)
+
 # ====
 # Cleanup
 # ====
