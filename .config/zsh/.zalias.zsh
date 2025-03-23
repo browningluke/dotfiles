@@ -98,5 +98,5 @@ fi
 # ====
 
 alias ts-watch='npx tsc -w -p .'
-alias pip='echo "Using uv instead...."; uv'
+alias pip='echo "Using uv instead...."; uv pip'
 
