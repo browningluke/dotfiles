@@ -96,6 +96,10 @@ znap eval pyenv "pyenv init -"
 # ==== goenv ====
 znap eval goenv "goenv init -"
 
+# ==== fzf ====
+export FZF_ALT_C_COMMAND=""
+znap eval fzf "fzf --zsh"
+
 ## Lazy load pyenv (runs pyenv init only when pyenv is first called in a shell)
 #znap function _pyenv pyenv 'eval "$( pyenv init - --no-rehash )"'
 #compctl -K    _pyenv pyenv
