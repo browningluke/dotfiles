@@ -1165,6 +1165,8 @@
 	<real>0.10711017387714167</real>
 	<key>TabStyleWithAutomaticOption</key>
 	<integer>5</integer>
+	<key>ThreeFingerEmulates</key>
+	<true/>
 	<key>ToolbeltTools</key>
 	<array>
 		<string>Snippets</string>
