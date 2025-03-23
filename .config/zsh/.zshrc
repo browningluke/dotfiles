@@ -73,6 +73,8 @@ znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
 # ====
 # Mostly covered by having homebrew/site-functions in fpath (see .zshenv)
 
+znap fpath _2fa "2fa completion"
+
 complete -o nospace -C terraform terraform
 complete -o nospace -C vault vault
 
