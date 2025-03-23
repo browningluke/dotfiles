@@ -48,6 +48,9 @@ alias d9='cd +9'
 
 alias dft_scrcpy="scrcpy -wS"
 
+
+alias uvenv="uv venv --seed --relocatable && source .venv/bin/activate"
+
 # ====
 # Git
 # ====
