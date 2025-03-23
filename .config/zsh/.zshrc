@@ -1,3 +1,6 @@
+# Enable debug logging
+# set -x
+
 # ====
 # Per-Platform Fixes
 # ====
@@ -89,6 +92,9 @@ compctl -K    _pip_completion pip
 
 # ==== pyenv ====
 znap eval pyenv "pyenv init -"
+
+# ==== goenv ====
+znap eval goenv "goenv init -"
 
 ## Lazy load pyenv (runs pyenv init only when pyenv is first called in a shell)
 #znap function _pyenv pyenv 'eval "$( pyenv init - --no-rehash )"'

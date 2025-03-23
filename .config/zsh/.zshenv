@@ -92,8 +92,8 @@ export XDG_CONFIG_HOME="/Users/lukebrowning/.config"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # ==== Go ====
-export GOPATH=$HOME/go
-export GOROOT="$(/opt/homebrew/bin/brew --prefix go)/libexec"
+#export GOPATH=$HOME/go
+#export GOROOT="$(/opt/homebrew/bin/brew --prefix go)/libexec"
 
 # ==== Android Studio ====
 export ANDROID_AVD_HOME="/Volumes/lrb-ssd/.android/avd"
@@ -109,6 +109,9 @@ export VAULT_ADDR="https://vault.browningluke.dev"
 # ==== pyenv ====
 export PYENV_ROOT="$HOME/.pyenv"
 
+# ==== goenv ====
+export GOENV_ROOT="$HOME/.goenv"
+
 # ==== Unix General ====
 export GPG_TTY=$(tty)
 export VISUAL='vim'
@@ -121,8 +124,8 @@ path=(
   ~/.local/bin
   /opt/homebrew/bin
   /opt/homebrew/sbin
-  $GOROOT/bin
-  $GOPATH/bin
+#  $GOROOT/bin
+#  $GOPATH/bin
   ~/Library/Python/3.8/bin
   $ZDOTDIR/functions
   $path
@@ -140,6 +143,12 @@ fpath=(
 
 # ==== pyenv ====
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+
+# ==== goenv ====
+# https://github.com/go-nv/goenv/issues/247#issuecomment-1464980109
+export PATH="$GOENV_ROOT/bin:$PATH"
+#export PATH="$GOROOT/bin:$PATH"
+#export PATH="$PATH:$GOPATH/bin"
 
 # ==== General Variables ====
 export EDITOR=nvim
