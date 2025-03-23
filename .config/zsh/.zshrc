@@ -128,5 +128,5 @@ eval $(thefuck --alias)
 # ====
 # MOTD
 # ====
-neofetch | lolcat
+fastfetch --pipe false | lolcat
 
