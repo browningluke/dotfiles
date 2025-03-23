@@ -52,6 +52,13 @@
     rs = reset
     rs1 = reset HEAD~1
 
+    upb = "!f() { \
+              local DEFAULT_BRANCH=$(git symbolic-ref --short refs/remotes/origin/HEAD | cut -d'/' -f2); \
+              local SELECTED_BRANCH=${1:-$DEFAULT_BRANCH}; \
+              echo \"\\033[32mPulling ${SELECTED_BRANCH}:${SELECTED_BRANCH} from origin\\033[0m\n\"; \
+              git pull origin $DEFAULT_BRANCH:$DEFAULT_BRANCH; \
+            }; f"
+
     # LOGS
 
     ls = !git log --color=always --decorate --graph --date=relative \
