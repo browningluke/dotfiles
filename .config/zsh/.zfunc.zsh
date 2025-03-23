@@ -91,6 +91,14 @@ date_create2name() {
 }
 
 # ====
+# netcat
+# ====
+nc_recieve() {
+  echo "send cmd: | pv | nc $(ipconfig getifaddr en0) 1234"
+  nc -l -w 1 0.0.0.0 1234 > $1 < /dev/null
+}
+
+# ====
 # Misc
 # ====
 
